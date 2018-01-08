@@ -1,0 +1,134 @@
+{{#if bucket}}
+<h3>
+  <a href="{{bucket.url}}"> # {{bucket.order}} - {{bucket.title}}</a>
+</h3>
+<h4>
+  <span>Description:</span>
+</h4>
+<h4>{{bucket.desc}}</h4>
+<h4>
+  <span>Entrance Criteria:</span>
+</h4>
+<h4>{{bucket.intCrit}}</h4>
+<h4>
+  <span>Exit Criteria:</span>
+</h4>
+<h4>{{bucket.exCrit}}</h4>
+{{else}}
+<h3>That bucket couldn't be found!</h3>
+{{/if}}
+<br>
+<h4>
+  <span>Tasks:</span>
+</h4>
+
+{{#each bucket.addedTask as |bucket index|}}
+<h4>#{{order}} - {{title}}</h4>
+{{/each}}
+
+<hr>
+<h3>Add Task</h3>
+<div class="container">
+  <form action="/bucket/{{ bucket.title }}?_method=patch" method="post">
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Task Order</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[addedTask][order]" placeholder="#" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Title</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[addedTask][order]" placeholder="Task Title" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="textarea-input" class="col-2 col-form-label">Task Title</label>
+      <div class="col-10">
+        <textarea class="form-control" name="bucket[addedTask][title]" id="textarea-input" placeholder="Task Title" rows="2"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
+      <div class="col-10">
+        <textarea class="form-control" name="bucket[addedTask][desc]" id="textarea-input" placeholder="Task Description" rows="2"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Importance</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[addedTask][importance]" placeholder="Task Importance" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="date-input" class="col-2 col-form-label">Due Date</label>
+      <div class="col-10">
+        <input class="form-control" type="date" name="bucket[addedTask][dueDate]" placeholder="mm/dd/yyy" id="date-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Task Status</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[addedTask][status]" placeholder="Task Status" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Add Task</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr>
+
+<h3> Update Bucket</h3>
+<div class="container">
+  <form action="/bucket/{{ bucket.title }}?_method=put" method="post">
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Order</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[order]" value="{{bucket.order}}" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="text-input" class="col-2 col-form-label">Title</label>
+      <div class="col-10">
+        <input class="form-control" type="text" name="bucket[title]" value="{{bucket.title}}" id="text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="textarea-input" class="col-2 col-form-label">Description</label>
+      <div class="col-10">
+        <textarea class="form-control" name="bucket[desc]" id="text-area-input" rows="2">{{bucket.desc}}</textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="textarea-input" class="col-2 col-form-label">Entrance Criteria</label>
+      <div class="col-10">
+        <textarea class="form-control" name="bucket[intCrit]" id="text-area-input" rows="2">{{bucket.intCrit}}</textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="textarea-input" class="col-2 col-form-label">Exit Criteria</label>
+      <div class="col-10">
+        <textarea class="form-control" name="bucket[exCrit]" id="text-area-input" rows="2">{{bucket.exCrit}}</textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr>
+<h3>Remove Bucket</h3>
+<div class="container">
+  <form action="/bucket/{{bucket.title}}?_method=delete" method="post">
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Remove</button>
+      </div>
+    </div>
+  </form>
+</div>
