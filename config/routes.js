@@ -44,21 +44,20 @@ router.route("/bucket").post(authenticatedUser, bucketController.bucketPost);
 // add new branch
 
 router
-  .route("/bucket/:title")
+  .route("/bucket/:bTitle")
   .get(authenticatedUser, bucketController.bucketGetOne);
 // show selected branch detail
-
 router
-  .route("/bucket/:title")
+  .route("/bucket/:bTitle")
   .delete(authenticatedUser, bucketController.bucketDelete);
 // delete selected branch
 
 router
-  .route("/bucket/:title")
+  .route("/bucket/:bTitle")
   .put(authenticatedUser, bucketController.bucketPut);
 
 router
-  .route("/bucket/:title")
+  .route("/bucket/:bTitle")
   .patch(authenticatedUser, bucketController.taskPatch);
 
 // TASK ROUTES  *******************************

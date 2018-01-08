@@ -17,8 +17,8 @@ function bucketGetAll(request, response) {
 }
 
 function bucketGetOne(request, response) {
-  let title = request.params.title;
-  Bucket.findOne({ title: title })
+  let bTitle = request.params.bTitle;
+  Bucket.findOne({ bTitle: bTitle })
     .then(bucketData => {
       response.render("bucket-show", { bucket: bucketData });
     })
@@ -28,7 +28,7 @@ function bucketGetOne(request, response) {
 }
 
 function bucketPost(request, response) {
-  let title = request.params.title;
+  // let bTitle = request.params.bTitle;
   Bucket.create(request.body.bucket)
     .then(bucket => {
       response.redirect(`/bucket`);
@@ -39,7 +39,7 @@ function bucketPost(request, response) {
 }
 
 function bucketDelete(request, response) {
-  Bucket.findOneAndRemove({ title: request.params.title })
+  Bucket.findOneAndRemove({ bTitle: request.params.bTitle })
     .then(() => {
       response.redirect("/bucket");
     })
@@ -50,14 +50,14 @@ function bucketDelete(request, response) {
 
 function bucketPut(request, response) {
   Bucket.findOneAndUpdate(
-    { title: request.params.title },
+    { bTitle: request.params.bTitle },
     request.body.bucket,
     {
       new: true
     }
   )
     .then(bucket => {
-      response.redirect(`/bucket/${bucket.title}`);
+      response.redirect(`/bucket/${bucket.bTitle}`);
     })
     .catch(err => {
       console.log(err);
@@ -67,14 +67,14 @@ function bucketPut(request, response) {
 function taskPatch(request, response) {
   // console.log(request.body);
   Bucket.findOneAndUpdate(
-    { title: request.params.title },
+    { bTitle: request.params.bTitle },
     { $push: { addedTask: request.body.bucket.addedTask } },
     {
       new: true
     }
   )
     .then(bucket => {
-      response.redirect(`/bucket/${bucket.title}`);
+      response.redirect(`/bucket/${bucket.bTitle}`);
     })
     .catch(err => {
       console.log(err);

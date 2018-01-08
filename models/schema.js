@@ -10,18 +10,18 @@ const mongoose = require("../db/connection");
 //CandidateSchema is object managed by mongo
 
 const TaskSchema = new mongoose.Schema({
-  order: Number,
-  title: String,
-  desc: String,
+  tOrder: Number,
+  tTitle: String,
+  tDesc: String,
   importance: String,
   dueDate: String,
   status: String
 });
 
 const BucketSchema = new mongoose.Schema({
-  order: Number,
-  title: String,
-  desc: String,
+  bOrder: Number,
+  bTitle: String,
+  bDesc: String,
   intCrit: String,
   exCrit: String,
   addedTask: [TaskSchema]
