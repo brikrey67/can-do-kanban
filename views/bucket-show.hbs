@@ -1,28 +1,19 @@
 {{#if bucket}}
-<h3>
-  <a href="{{bucket.url}}"> # {{bucket.bOrder}} - {{bucket.bTitle}}</a>
-</h3>
-<h4>
-  <span>Description:</span>
-</h4>
-<h4>{{bucket.bDesc}}</h4>
-<h4>
-  <span>Entrance Criteria:</span>
-</h4>
-<h4>{{bucket.intCrit}}</h4>
-<h4>
-  <span>Exit Criteria:</span>
-</h4>
-<h4>{{bucket.exCrit}}</h4>
+<h3> Bucket: {{bucket.bOrder}} - {{bucket.bTitle}}</h3>
+<h4>Description:</h4>
+<h5 class="well well-sm">{{bucket.bDesc}}</h5>
+<h4>Entrance Criteria:</h4>
+<h5 class="well well-sm">{{bucket.intCrit}}</h5>
+<h4>Exit Criteria:</h4>
+<h5 class="well well-sm">{{bucket.exCrit}}</h5>
 {{else}}
 <h3>That bucket couldn't be found!</h3>
 {{/if}}
 <br>
-<h4>
-  <span>Tasks:</span>
-</h4>
+<h4 class="bg-info">Bucket Backlog:</h4>
 
 {{#each bucket.addedTask as |bucket index|}}
+
 <h4>#{{tOrder}} - {{tTitle}}</h4>
 {{/each}}
 
@@ -115,13 +106,11 @@
     </div>
   </form>
 </div>
-<hr>
-<h3>Remove Bucket</h3>
 <div class="container">
   <form action="/bucket/{{bucket.bTitle}}?_method=delete" method="post">
     <div class="form-group row">
       <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Remove</button>
+        <button type="submit" class="btn btn-danger">Remove</button>
       </div>
     </div>
   </form>
