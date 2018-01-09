@@ -7,7 +7,7 @@ var methodOverride = require("method-override");
 var passport = require("passport");
 var usersController = require("../controllers/users");
 var bucketController = require("../controllers/buckets");
-// var taskController = require("../controllers/tasks");
+var taskController = require("../controllers/tasks");
 // var activityController = require("../controllers/activities");
 var staticsController = require("../controllers/statics");
 
@@ -38,19 +38,19 @@ router.route("/secret").get(authenticatedUser, usersController.secret);
 
 // BUCKET ROUTES ******************************
 router.route("/bucket").get(authenticatedUser, bucketController.bucketGetAll);
-// list all branches
+// list all bucket
 
 router.route("/bucket").post(authenticatedUser, bucketController.bucketPost);
-// add new branch
+// add new bucket
 
 router
   .route("/bucket/:bTitle")
   .get(authenticatedUser, bucketController.bucketGetOne);
-// show selected branch detail
+// show selected bucket detail
 router
   .route("/bucket/:bTitle")
   .delete(authenticatedUser, bucketController.bucketDelete);
-// delete selected branch
+// delete selected bucket
 
 router
   .route("/bucket/:bTitle")
@@ -61,6 +61,11 @@ router
   .patch(authenticatedUser, bucketController.taskPatch);
 
 // TASK ROUTES  *******************************
+
+router
+  .route("/bucket/:bTitle/:_id")
+  .get(authenticatedUser, taskController.taskGetOne);
+// show selected task detail
 
 // ACTIVITY ROUTES ****************************
 

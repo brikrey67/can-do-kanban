@@ -1,7 +1,7 @@
 const express = require("express");
 var passport = require("passport");
 
-const Bucket = require("../models/schema");
+const { Bucket } = require("../models/schema");
 // assign schema (defined in schema.js) to variable
 
 function bucketGetAll(request, response) {

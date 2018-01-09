@@ -7,19 +7,19 @@
   <h5 class="well well-sm">{{bucket.intCrit}}</h5>
   <h4>Exit Criteria:</h4>
   <h5 class="well well-sm">{{bucket.exCrit}}</h5>
-  {{else}}
-  <h3>That bucket couldn't be found!</h3>
-  {{/if}}
   <h4>Bucket Backlog:</h4>
-
   <div class="row well">
-    {{#each bucket.addedTask as |bucket index|}}
+    {{#each bucket.addedTask as | bucketTask index|}}
     <div class="col-sm-1">{{tOrder}}</div>
-    <div class="col-sm-4">{{tTitle}}</div>
+    <div class="col-sm-4">
+      <a href="/bucket/{{../bucket.bTitle}}/{{_id}}"> {{tTitle}}</a>
+    </div>
     <div class="col-sm-3">{{importance}} importance</div>
     <div class="col-sm-2">{{points}}pts</div>
     <div class="col-sm-2">{{status}}</div>
-    {{/each }}
+    {{/each }} {{else}}
+    <h3>That bucket couldn't be found!</h3>
+    {{/if}}
   </div>
 </div>
 

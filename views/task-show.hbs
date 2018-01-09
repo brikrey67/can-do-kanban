@@ -1,0 +1,16 @@
+<div class="container"> {{#if task}}
+    <h3> Task: {{task.tOrder}} - {{task.tTitle}}</h3>
+    <h4>Description:</h4>
+    <h5 class="well well-sm">{{task.tDesc}}</h5>
+    <h4>Importance:</h4>
+    <h5 class="well well-sm">{{bucket.importance}}</h5>
+    <h4>Task Points:</h4>
+    <h5 class="well well-sm">{{bucket.points}}pts</h5>
+    <h4>Due Date:</h4>
+    <h5 class="well well-sm">{{bucket.dueDate}}</h5>
+    <h4>Task Status:</h4>
+    <h5 class="well well-sm">{{bucket.status}}</h5>
+    {{else}}
+    <h3>That task couldn't be found!</h3>
+    {{/if}}
+</div>
