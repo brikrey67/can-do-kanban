@@ -1,24 +1,33 @@
-{{#if bucket}}
-<h3> Bucket: {{bucket.bOrder}} - {{bucket.bTitle}}</h3>
-<h4>Description:</h4>
-<h5 class="well well-sm">{{bucket.bDesc}}</h5>
-<h4>Entrance Criteria:</h4>
-<h5 class="well well-sm">{{bucket.intCrit}}</h5>
-<h4>Exit Criteria:</h4>
-<h5 class="well well-sm">{{bucket.exCrit}}</h5>
-{{else}}
-<h3>That bucket couldn't be found!</h3>
-{{/if}}
-<br>
-<h4 class="bg-info">Bucket Backlog:</h4>
+<div class="container">
+  {{#if bucket}}
+  <h3> Bucket: {{bucket.bOrder}} - {{bucket.bTitle}}</h3>
+  <h4>Description:</h4>
+  <h5 class="well well-sm">{{bucket.bDesc}}</h5>
+  <h4>Entrance Criteria:</h4>
+  <h5 class="well well-sm">{{bucket.intCrit}}</h5>
+  <h4>Exit Criteria:</h4>
+  <h5 class="well well-sm">{{bucket.exCrit}}</h5>
+  {{else}}
+  <h3>That bucket couldn't be found!</h3>
+  {{/if}}
+  <h4>Bucket Backlog:</h4>
 
-{{#each bucket.addedTask as |bucket index|}}
+  <div class="row well">
+    {{#each bucket.addedTask as |bucket index|}}
+    <div class="col-sm-1">{{tOrder}}</div>
+    <div class="col-sm-4">{{tTitle}}</div>
+    <div class="col-sm-3">{{importance}} importance</div>
+    <div class="col-sm-2">{{points}}pts</div>
+    <div class="col-sm-2">{{status}}</div>
+    {{/each }}
+  </div>
+</div>
 
+{{!-- {{#each bucket.addedTask as |bucket index|}}
 <h4>#{{tOrder}} - {{tTitle}}</h4>
-{{/each}}
+{{/each}} --}}
 
-<hr>
-<h3>Add Task</h3>
+<h4>Add Task:</h4>
 <div class="container">
   <form action="/bucket/{{ bucket.bTitle }}?_method=patch" method="post">
     <div class="form-group row">
@@ -40,10 +49,30 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Importance</label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="bucket[addedTask][importance]" placeholder="Task Importance" id="text-input">
-      </div>
+      <label for="select-input" class="col-2 col-form-label">Task Importance</label>
+      <div class="col-10"></div>
+      <select class="form-control" type="text" name="bucket[addedTask][importance]" id="select-input">
+        <option>Very Low</option>
+        <option>Low</option>
+        <option>Moderate</option>
+        <option>High</option>
+        <option>Very High</option>
+        <option>Critical</option>
+      </select>
+    </div>
+    <div class="form-group row">
+      <label for="select-input" class="col-2 col-form-label">Task Points</label>
+      <div class="col-10"></div>
+      <select class="form-control" type="number" name="bucket[addedTask][points]" id="select-input">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>5</option>
+        <option>8</option>
+        <option>13</option>
+        <option>21</option>
+        <option>34</option>
+      </select>
     </div>
     <div class="form-group row">
       <label for="date-input" class="col-2 col-form-label">Due Date</label>
@@ -52,10 +81,14 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Task Status</label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="bucket[addedTask][status]" placeholder="Task Status" id="text-input">
-      </div>
+      <label for="select-input" class="col-2 col-form-label">Task Status</label>
+      <div class="col-10"></div>
+      <select class="form-control" type="text" name="bucket[addedTask][status]" id="select-input">
+        <option>Not Started</option>
+        <option>In progress</option>
+        <option>Completed</option>
+        <option>Accepted</option>
+      </select>
     </div>
     <div class="form-group row">
       <div class="offset-sm-2 col-sm-10">
@@ -64,9 +97,8 @@
     </div>
   </form>
 </div>
-<hr>
 
-<h3> Update Bucket</h3>
+<h4> Update Bucket:</h4>
 <div class="container">
   <form action="/bucket/{{ bucket.bTitle }}?_method=put" method="post">
     <div class="form-group row">

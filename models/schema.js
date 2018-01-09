@@ -14,6 +14,7 @@ const TaskSchema = new mongoose.Schema({
   tTitle: String,
   tDesc: String,
   importance: String,
+  points: Number,
   dueDate: String,
   status: String
 });
