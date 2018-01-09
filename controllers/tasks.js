@@ -5,9 +5,18 @@ const { Bucket, Task } = require("../models/schema");
 //assign schema (defined in schema.js) to variabl
 
 function taskGetOne(request, response) {
+  console.log("PARAMS ID: " + request.params._id);
   let tId = request.params._id;
-  Task.findOne({ _id: tId })
-    .then(taskData => {
+  let bTitle = request.params.bTitle;
+  console.log("TASK ID: " + tId, "BUCKET TITLE: " + bTitle);
+  Bucket.findOne({ bTitle: bTitle })
+    .then(bucketData => {
+      //   console.log("BUCKET DATA: " + bucketData);
+      //   console.log("ADDED TASK DATA: " + bucketData.addedTask);
+      //   taskData = bucketData.addedTask;
+      //   console.log("TASKDATA: " + taskData);
+      taskData = bucketData.addedTask.find(task => task._id.toString() == tId);
+      console.log("TASK DATA: " + taskData);
       response.render("task-show", { task: taskData });
     })
     .catch(err => {
