@@ -65,7 +65,12 @@ router
 router
   .route("/bucket/:bTitle/:_id")
   .get(authenticatedUser, taskController.taskGetOne);
-// show selected task detail
+// show selected task detailrouter
+
+router
+  .route("/bucket/:bTitle/:_id")
+  .delete(authenticatedUser, taskController.taskDelete);
+// delete selected bucket
 
 // ACTIVITY ROUTES ****************************
 
