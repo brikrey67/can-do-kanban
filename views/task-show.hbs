@@ -15,11 +15,7 @@
             {{task.status}}%
         </div>
     </div>
-
-
-
-    {{!--
-    <h5 class="well well-sm">{{task.status}}</h5> --}} {{else}}
+    {{else}}
     <h3>That task couldn't be found!</h3>
     {{/if}}
 </div>
@@ -82,15 +78,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="select-input" class="col-2 col-form-label">Task Status</label>
-            <div class="col-10"></div>
-            <select class="form-control" type="text" name="bucket[addedTask][status]" value="{{task.status}}" id="select-input">
-                <option>Choose...</option>
-                <option>Not Started</option>
-                <option>In progress</option>
-                <option>Completed</option>
-                <option>Accepted</option>
-            </select>
+            <label for="number-input" class="col-2 col-form-label">% Complete</label>
+            <div class="col-10">
+                <input class="form-control" type="number" name="bucket[addedTask][status]" value="{{task.status}}" id="number-input">
+            </div>
         </div>
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
