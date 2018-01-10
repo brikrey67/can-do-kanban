@@ -9,8 +9,17 @@
     <h4>Due Date:</h4>
     <h5 class="well well-sm">{{task.dueDate}}</h5>
     <h4>Task Status:</h4>
-    <h5 class="well well-sm">{{task.status}}</h5>
-    {{else}}
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{task.status}} aria-valuemin="0"
+            aria-valuemax="100" style="width:{{task.status}}%">
+            {{task.status}}%
+        </div>
+    </div>
+
+
+
+    {{!--
+    <h5 class="well well-sm">{{task.status}}</h5> --}} {{else}}
     <h3>That task couldn't be found!</h3>
     {{/if}}
 </div>

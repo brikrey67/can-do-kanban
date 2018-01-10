@@ -17,7 +17,7 @@ const TaskSchema = new mongoose.Schema({
   importance: String,
   points: Number,
   dueDate: String,
-  status: String
+  status: Number
 });
 
 const Task = mongoose.model("Task", TaskSchema);
