@@ -1,5 +1,5 @@
 <div class="container"> {{#if task}}
-    <h3 class="text-capitalize"> Task: {{task.tOrder}} - {{task.tTitle}}</h3>
+    <h3 class="text-capitalize"> Task: {{task.tTitle}}</h3>
     <h4>Description:</h4>
     <h5 class="well well-sm">{{task.tDesc}}</h5>
     <h4>Importance:</h4>
@@ -25,12 +25,6 @@
 <h4>Update Task:</h4>
 <div class="container">
     <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
-        <div class="form-group row">
-            <label for="number-input" class="col-2 col-form-label">Task Order</label>
-            <div class="col-10">
-                <input class="form-control" type="number" name="bucket[addedTask][tOrder]" value="{{task.tOrder}}" id="number-input">
-            </div>
-        </div>
         <div class="form-group row">
             <label for="text-input" class="col-2 col-form-label">Title</label>
             <div class="col-10">

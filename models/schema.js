@@ -11,7 +11,6 @@ const mongoose = require("../db/connection");
 //CandidateSchema is object managed by mongo
 
 const TaskSchema = new mongoose.Schema({
-  tOrder: Number,
   tTitle: String,
   tDesc: String,
   importance: String,
