@@ -3,7 +3,7 @@
 // Because we defined our model in schema.js and
 // set its module.exports to be equal to the News model,
 // we can reference it like so.
-const Buckets = require("../models/schema");
+const { Bucket, Task } = require("../models/schema");
 const seedData = require("./seeds.json");
 
 // This clears out the entire candidates collection. We're not
@@ -15,9 +15,9 @@ const seedData = require("./seeds.json");
 // validation. In our controller, where we will want validation,
 // we will use Candidate.create().
 
-News.remove({})
+Bucket.remove({})
   .then(() => {
-    return News.collection.insert(seedData);
+    return Bucket.collection.insert(seedData);
   })
   .then(() => {
     process.exit();

@@ -24,15 +24,6 @@ function taskGetOne(request, response) {
     });
 }
 
-// ProductContact.findOneAndUpdate({'productRoles._id':req.params.product_role_id},
-// {
-//   $pull: { productRoles: {_id:req.params.product_role_id }}
-// },{new:true},
-// function(err, productcontact) {
-//   if(err)
-//     res.send(err);res.json({message: 'Role successfully deleted.'});
-// })
-
 function taskDelete(request, response) {
   Bucket.findOneAndUpdate(
     { "addedTask._id": request.params._id },
@@ -47,23 +38,29 @@ function taskDelete(request, response) {
     });
 }
 
-// function bucketPut(request, response) {
-//   Bucket.findOneAndUpdate(
-//     { bTitle: request.params.bTitle },
-//     request.body.bucket,
-//     {
-//       new: true
-//     }
-//   )
-//     .then(bucket => {
-//       response.redirect(`/bucket/${bucket.bTitle}`);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// }
+function taskOnePatch(request, response) {
+  let tId = request.params._id;
+  let bucketTitle = request.params.bTitle;
+  console.log(
+    "tId: " + tId,
+    "bucketTitle: " + bucketTitle,
+    "_id: " + request.params._id
+  );
+  Bucket.findOneAndUpdate(
+    { "addedTask._id": request.params._id },
+    { $set: { addedTask: { tOrder: request.body.tOrder } } },
+    { new: true }
+  )
+    .then(bucket => {
+      response.redirect(`/bucket/${bbucketTitle}/${iId}`);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
 module.exports = {
   taskGetOne: taskGetOne,
-  taskDelete: taskDelete
+  taskDelete: taskDelete,
+  taskOnePatch: taskOnePatch
 };

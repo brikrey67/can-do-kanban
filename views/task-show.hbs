@@ -15,7 +15,85 @@
     {{/if}}
 </div>
 
-<p>Title: {{bucket.bTitle}} - {{task.tTitle}}</p>
+{{!-- ****************************** --}}
+
+<h4>Update Task:</h4>
+<div class="container">
+    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
+        <div class="form-group row">
+            <label for="number-input" class="col-2 col-form-label">Task Order</label>
+            <div class="col-10">
+                <input class="form-control" type="number" name="bucket[addedTask][tOrder]" value="{{task.tOrder}}" id="number-input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="text-input" class="col-2 col-form-label">Title</label>
+            <div class="col-10">
+                <input class="form-control" type="text" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}" id="text-input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
+            <div class="col-10">
+                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" value="{{task.tDesc}}" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="select-input" class="col-2 col-form-label">Task Importance</label>
+            <div class="col-10"></div>
+            <select class="form-control" type="text" name="bucket[addedTask][importance]" value="{{task.importance}}" id="select-input">
+                <option>Choose...</option>
+                <option>Very Low</option>
+                <option>Low</option>
+                <option>Moderate</option>
+                <option>High</option>
+                <option>Very High</option>
+                <option>Critical</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="select-input" class="col-2 col-form-label">Task Points</label>
+            <div class="col-10"></div>
+            <select class="form-control" type="number" name="bucket[addedTask][points]" value="{{task.points}}" id="select-input">
+                <option>Choose...</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>8</option>
+                <option>13</option>
+                <option>21</option>
+                <option>34</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="date-input" class="col-2 col-form-label">Due Date</label>
+            <div class="col-10">
+                <input class="form-control" type="date" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}" id="date-input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="select-input" class="col-2 col-form-label">Task Status</label>
+            <div class="col-10"></div>
+            <select class="form-control" type="text" name="bucket[addedTask][status]" value="{{task.status}}" id="select-input">
+                <option>Choose...</option>
+                <option>Not Started</option>
+                <option>In progress</option>
+                <option>Completed</option>
+                <option>Accepted</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{{!-- ****************************** --}}
 <div class="container">
     <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=delete" method="post">
         <div class="form-group row">
