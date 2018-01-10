@@ -3,7 +3,7 @@
   border: 0;
   padding: 0;
   font-size: inherit;
-  font-family:"Share Tech Mono", monospace;
+  font-family: "Share Tech Mono", monospace;
   font-weight: inherit;
   font-style: inherit;
   border-collapse: collapse;
@@ -15,7 +15,7 @@
   outline: none;
 }
 .submit {
-  color: #FF007F;
+  color: #ff007f;
   font-size: 22px;
 }
 body {
@@ -39,7 +39,7 @@ a {
 }
 body {
   min-height: 100vh;
-  background-color: #0BD0FF;
+  background-color: #0bd0ff;
   /* background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)); */
   background-size: cover;
   background-image: url("../images/strange-bullseyes.png");
@@ -52,12 +52,12 @@ h2 {
   line-height: 50px;
   padding: 20px 0;
   font-weight: bold;
-  color: #1DE829;
+  color: #1de829;
   text-align: center;
   text-shadow: 1px 1px 1px white;
 }
 h1 {
-  background-color:black;
+  background-color: black;
   background-image: url("../images/cubes.png");
   background-repeat: repeat;
 
@@ -67,7 +67,7 @@ h1 {
 }
 h2 {
   font-size: 23px;
-  text-shadow: .5px .5px .5px white;
+  text-shadow: 0.5px 0.5px 0.5px white;
 }
 /* h3 a, */
 h3 {

@@ -1,50 +1,62 @@
 <h3>Kanban includes {{bucket.length}} Buckets</h3>
+<div class="container"></div>
 {{#each bucket as |bucket index|}}
 <h4 class="text-capitalize">
   <a href="/bucket/{{bucket.bTitle}}"> {{bucket.bOrder}} - {{bucket.bTitle}}</a>
 </h4>
 {{/each}}
 <hr>
-<h4> Create New Bucket</h4>
 
-<div class="container">
-  <form action="/bucket" method="post">
-    <div class="form-group row">
-      <label for="number-input" class="col-2 col-form-label">Order</label>
-      <div class="col-10">
-        <input class="form-control" type="number" name="bucket[bOrder]" placeholder="#" id="number-input">
-      </div>
+<div class="panel-group">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Create Bucket</a>
+      </h4>
     </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Title</label>
-      <div class="col-10">
-        <input class="form-control text-capitalize" type="text" name="bucket[bTitle]" placeholder="Title" id="text-input">
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">
+        <form action="/bucket" method="post">
+          <div class="form-group">
+            <label for="number-input" class="col-2 col-form-label">Order</label>
+            <div class="col-10">
+              <input class="form-control" type="number" name="bucket[bOrder]" placeholder="#" id="number-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="text-input" class="col-2 col-form-label">Title</label>
+            <div class="col-10">
+              <input class="form-control text-capitalize" type="text" name="bucket[bTitle]" placeholder="Title" id="text-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="textarea-input" class="col-2 col-form-label">Description</label>
+            <div class="col-10">
+              <textarea class="form-control" name="bucket[bDesc]" placeholder="Bucket Description" id="text-area-input" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="textarea-input" class="col-2 col-form-label">Entrance Criteria</label>
+            <div class="col-10">
+              <textarea class="form-control" name="bucket[intCrit]" placeholder="Entrance Criteria" id="text-area-input" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="textarea-input" class="col-2 col-form-label">Exit Criteria</label>
+            <div class="col-10">
+              <textarea class="form-control" name="bucket[exCrit]" placeholder="Exit Criteria" id="text-area-input" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+        </form>
       </div>
+      {{!--
+      <div class="panel-footer"></div> --}}
     </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Description</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[bDesc]" placeholder="Bucket Description" id="text-area-input" rows="2"></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Entrance Criteria</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[intCrit]" placeholder="Entrance Criteria" id="text-area-input" rows="2"></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Exit Criteria</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[exCrit]" placeholder="Exit Criteria" id="text-area-input" rows="2"></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>
-
-<hr>
+</div>
