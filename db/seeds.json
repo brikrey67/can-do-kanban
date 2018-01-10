@@ -5,77 +5,27 @@
     "bDesc": "bucket of tasks that might get executed",
     "intCrit":
       "tasks or ideas seems to have business value, but hasn't been validated",
-    "exCrit": "tasks or ideas have been validated as valuable and affordable",
-    "addedTask": [
-      {
-        "status": 0,
-        "dueDate": "2018-01-16",
-        "points": 5,
-        "importance": "High",
-        "tDesc": "",
-        "tTitle": "Component Extravaganza Lab"
-      }
-    ]
+    "exCrit": "tasks or ideas have been validated as valuable and affordable"
   },
   {
     "bOrder": 2,
     "bTitle": "to-do",
     "bDesc": "bucket of tasks that are planned for execution",
     "intCrit": "tasks or ideas have been validated as valuable and affordable",
-    "exCrit": "tasks or ideas that will be taken on next",
-    "addedTask": [
-      {
-        "status": 0,
-        "dueDate": "2018-01-17",
-        "points": 1,
-        "importance": "Low",
-        "tDesc": "Professional photograph headshots ",
-        "tTitle": "Outcomes Headshots"
-      }
-    ]
+    "exCrit": "tasks or ideas that will be taken on next"
   },
   {
     "bOrder": 3,
     "bTitle": "in-progress",
     "bDesc": "bucket of tasks that are being activily worked on",
     "intCrit": "tasks or ideas that will be taken on next",
-    "exCrit": "tasks or ideas have been completed",
-    "addedTask": [
-      {
-        "status": 80,
-        "dueDate": "2018-01-11",
-        "points": 8,
-        "importance": "High",
-        "tDesc":
-          "full stack web app using node.js, express, handlebars, bootstrap, mongoose, and mongo",
-        "tTitle": "project 2"
-      }
-    ]
+    "exCrit": "tasks or ideas have been completed"
   },
   {
     "bOrder": 4,
     "bTitle": "complete",
     "bDesc": "bucket of tasks that have been completed",
     "intCrit": "tasks or ideas have been completed",
-    "exCrit": "tasks or ideas that can be deleted from the kanban",
-    "addedTask": [
-      {
-        "status": 100,
-        "dueDate": "2018-01-02",
-        "points": 2,
-        "importance": "Moderate",
-        "tDesc": "homework assignment involving use of node.js and express",
-        "tTitle": "Emergency Compliment"
-      },
-      {
-        "status": 100,
-        "dueDate": "2018-01-02",
-        "points": 3,
-        "importance": "Moderate",
-        "tDesc":
-          "homework assignment involving use of mongo, mongoose, express, and node.js",
-        "tTitle": "Yum"
-      }
-    ]
+    "exCrit": "tasks or ideas that can be deleted from the kanban"
   }
 ]
