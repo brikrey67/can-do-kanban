@@ -74,7 +74,7 @@ router
 
 router
   .route("/bucket/:bTitle/:_id")
-  .patch(authenticatedUser, taskController.taskOnePatch);
+  .put(authenticatedUser, taskController.taskOnePut);
 // delete selected bucket
 
 module.exports = router;

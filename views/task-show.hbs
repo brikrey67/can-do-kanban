@@ -56,12 +56,12 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse5">Update Task</a>
+                    <a data-toggle="collapse" href="#collapse5">Copy-Edit Task</a>
                 </h4>
             </div>
             <div id="collapse5" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
+                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=put" method="post">
                         <div class="form-group">
                             <label for="text-input" class="col-2 col-form-label">Title</label>
                             <div class="col-10">
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
                             <div class="col-10">
-                                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" value="{{task.tDesc}}" rows="2"></textarea>
+                                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" rows="2">{{task.tDesc}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">

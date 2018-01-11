@@ -38,7 +38,7 @@ function taskDelete(request, response) {
     });
 }
 
-function taskOnePatch(request, response) {
+function taskOnePut(request, response) {
   let tId = request.params._id;
   console.log("TID: " + tId);
   let bucketTitle = request.params.bTitle;
@@ -48,8 +48,15 @@ function taskOnePatch(request, response) {
     { $push: { addedTask: request.body.bucket.addedTask } },
     { new: true }
   )
+    .then(removeTask => {
+      Bucket.findOneAndUpdate(
+        { "addedTask._id": tId },
+        { $pull: { addedTask: { _id: tId } } },
+        { new: true }
+      );
+    })
     .then(bucket => {
-      response.redirect(`/bucket/${bucket.bTitle}`);
+      response.redirect(`/bucket/${bucketTitle}`);
     })
     .catch(err => {
       console.log(err);
@@ -59,5 +66,5 @@ function taskOnePatch(request, response) {
 module.exports = {
   taskGetOne: taskGetOne,
   taskDelete: taskDelete,
-  taskOnePatch: taskOnePatch
+  taskOnePut: taskOnePut
 };
