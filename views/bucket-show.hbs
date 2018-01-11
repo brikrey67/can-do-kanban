@@ -1,167 +1,227 @@
 <div class="container">
   {{#if bucket}}
   <h3 class="text-capitalize"> Bucket: {{bucket.bOrder}} - {{bucket.bTitle}}</h3>
-  <h4>Description:</h4>
-  <h5 class="well well-sm">{{bucket.bDesc}}</h5>
-  <h4>Entrance Criteria:</h4>
-  <h5 class="well well-sm">{{bucket.intCrit}}</h5>
-  <h4>Exit Criteria:</h4>
-  <h5 class="well well-sm">{{bucket.exCrit}}</h5>
-  <h4>Bucket Backlog:</h4>
-  <div class="row well">
-    <div class="col-sm-4">
-      <strong>
-        <u>Task Title</u>
-      </strong>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">Description</h4>
     </div>
-    <div class="col-sm-2">
-      <strong>
-        <u>Due Date</u>
-      </strong>
+    <div class="panel-body">
+      <h5>{{bucket.bDesc}}</h5>
     </div>
-    <div class="col-sm-2">
-      <strong>
-        <u>Importance</u>
-      </strong>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">Entrance Crfiteria</h4>
     </div>
-    <div class="col-sm-2">
-      <strong>
-        <u>Task Points</u>
-      </strong>
+    <div class="panel-body">
+      <h5>{{bucket.intCrit}}</h5>
     </div>
-    <div class="col-sm-2">
-      <strong>
-        <u>% Complete</u>
-      </strong>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">Exit Criteria</h4>
     </div>
-    {{#each bucket.addedTask as | bucketTask index|}}
-    <div class="col-sm-4 text-capitalize">
-      <a href="/bucket/{{../bucket.bTitle}}/{{_id}}"> {{tTitle}}</a>
+    <div class="panel-body">
+      <h5>{{bucket.exCrit}}</h5>
     </div>
-    <div class="col-sm-2">{{dueDate}}</div>
-    <div class="col-sm-2">{{importance}}</div>
-    <div class="col-sm-2">{{points}}</div>
-    <div class="col-sm-2">
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{status}} aria-valuemin="0" aria-valuemax="100"
-          style="width:{{status}}%">
-          {{status}}%
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title">Bucket Backlog</h4>
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-4">
+        <strong>
+          <u>Task Title</u>
+        </strong>
+      </div>
+      <div class="col-sm-2">
+        <strong>
+          <u>Due Date</u>
+        </strong>
+      </div>
+      <div class="col-sm-2">
+        <strong>
+          <u>Importance</u>
+        </strong>
+      </div>
+      <div class="col-sm-2">
+        <strong>
+          <u>Task Points</u>
+        </strong>
+      </div>
+      <div class="col-sm-2">
+        <strong>
+          <u>% Complete</u>
+        </strong>
+      </div>
+      {{#each bucket.addedTask as | bucketTask index|}}
+      <div class="col-sm-4 text-capitalize">
+        <a href="/bucket/{{../bucket.bTitle}}/{{_id}}"> {{tTitle}}</a>
+      </div>
+      <div class="col-sm-2">{{dueDate}}</div>
+      <div class="col-sm-2">{{importance}}</div>
+      <div class="col-sm-2">{{points}}</div>
+      <div class="col-sm-2">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{status}} aria-valuemin="0" aria-valuemax="100"
+            style="width:{{status}}%">
+            {{status}}%
+          </div>
         </div>
       </div>
+      {{/each }}
     </div>
-    {{/each }} {{else}}
+
+    {{else}}
     <h3>That bucket couldn't be found!</h3>
     {{/if}}
   </div>
-</div>
 
-<h4>Add Task:</h4>
-<div class="container">
-  <form action="/bucket/{{ bucket.bTitle }}?_method=patch" method="post">
-    <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Title</label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="bucket[addedTask][tTitle]" placeholder="Task Title" id="text-input">
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1">Add Task</a>
+        </h4>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" placeholder="Task Description" rows="2"></textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="select-input" class="col-2 col-form-label">Task Importance</label>
-      <div class="col-10"></div>
-      <select class="form-control" type="text" name="bucket[addedTask][importance]" id="select-input">
-        <option>Very Low</option>
-        <option>Low</option>
-        <option>Moderate</option>
-        <option>High</option>
-        <option>Very High</option>
-        <option>Critical</option>
-      </select>
-    </div>
-    <div class="form-group row">
-      <label for="select-input" class="col-2 col-form-label">Task Points</label>
-      <div class="col-10"></div>
-      <select class="form-control" type="number" name="bucket[addedTask][points]" id="select-input">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>5</option>
-        <option>8</option>
-        <option>13</option>
-        <option>21</option>
-        <option>34</option>
-      </select>
-    </div>
-    <div class="form-group row">
-      <label for="date-input" class="col-2 col-form-label">Due Date</label>
-      <div class="col-10">
-        <input class="form-control" type="date" name="bucket[addedTask][dueDate]" placeholder="mm/dd/yyy" id="date-input">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="number-input" class="col-2 col-form-label">% Complete</label>
-      <div class="col-10">
-        <input class="form-control" type="number" name="bucket[addedTask][status]" placeholder="#" id="number-input">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Add Task</button>
-      </div>
-    </div>
-  </form>
-</div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form action="/bucket/{{ bucket.bTitle }}?_method=patch" method="post">
+            <div class="form-group">
+              <label for="text-input" class="col-2 col-form-label">Title</label>
+              <div class="col-10">
+                <input class="form-control" type="text" name="bucket[addedTask][tTitle]" placeholder="Task Title" id="text-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
+              <div class="col-10">
+                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" placeholder="Task Description" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="select-input" class="col-2 col-form-label">Task Importance</label>
+              <div class="col-10"></div>
+              <select class="form-control" type="text" name="bucket[addedTask][importance]" id="select-input">
+                <option>Very Low</option>
+                <option>Low</option>
+                <option>Moderate</option>
+                <option>High</option>
+                <option>Very High</option>
+                <option>Critical</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="select-input" class="col-2 col-form-label">Task Points</label>
+              <div class="col-10"></div>
+              <select class="form-control" type="number" name="bucket[addedTask][points]" id="select-input">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>8</option>
+                <option>13</option>
+                <option>21</option>
+                <option>34</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date-input" class="col-2 col-form-label">Due Date</label>
+              <div class="col-10">
+                <input class="form-control" type="date" name="bucket[addedTask][dueDate]" placeholder="mm/dd/yyy" id="date-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="number-input" class="col-2 col-form-label">% Complete</label>
+              <div class="col-10">
+                <input class="form-control" type="number" name="bucket[addedTask][status]" placeholder="#" id="number-input">
+              </div>
+            </div>
+            <div class="form-groupru">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Add Task</button>
+              </div>
+            </div>
+          </form>
 
-<h4> Update Bucket:</h4>
-<div class="container">
-  <form action="/bucket/{{ bucket.bTitle }}?_method=put" method="post">
-    <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Order</label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="bucket[bOrder]" value="{{bucket.bOrder}}" id="text-input">
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="text-input" class="col-2 col-form-label">Title</label>
-      <div class="col-10">
-        <input class="form-control" type="text" name="bucket[bTitle]" value="{{bucket.bTitle}}" id="text-input">
+  </div>
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse2">Update Bucket</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form action="/bucket/{{ bucket.bTitle }}?_method=put" method="post">
+            <div class="form-group">
+              <label for="text-input" class="col-2 col-form-label">Order</label>
+              <div class="col-10">
+                <input class="form-control" type="text" name="bucket[bOrder]" value="{{bucket.bOrder}}" id="text-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="text-input" class="col-2 col-form-label">Title</label>
+              <div class="col-10">
+                <input class="form-control" type="text" name="bucket[bTitle]" value="{{bucket.bTitle}}" id="text-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textarea-input" class="col-2 col-form-label">Description</label>
+              <div class="col-10">
+                <textarea class="form-control" name="bucket[bDesc]" id="text-area-input" rows="2">{{bucket.bDesc}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textarea-input" class="col-2 col-form-label">Entrance Criteria</label>
+              <div class="col-10">
+                <textarea class="form-control" name="bucket[intCrit]" id="text-area-input" rows="2">{{bucket.intCrit}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textarea-input" class="col-2 col-form-label">Exit Criteria</label>
+              <div class="col-10">
+                <textarea class="form-control" name="bucket[exCrit]" id="text-area-input" rows="2">{{bucket.exCrit}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Description</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[bDesc]" id="text-area-input" rows="2">{{bucket.bDesc}}</textarea>
+  </div>
+
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse3">Delete Bucket</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <strong>Warning: Deleting a bucket will also delete all constituent tasks</strong>
+          <form action="/bucket/{{bucket.bTitle}}?_method=delete" method="post">
+            <div class="form-group">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-danger">Remove</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Entrance Criteria</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[intCrit]" id="text-area-input" rows="2">{{bucket.intCrit}}</textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="textarea-input" class="col-2 col-form-label">Exit Criteria</label>
-      <div class="col-10">
-        <textarea class="form-control" name="bucket[exCrit]" id="text-area-input" rows="2">{{bucket.exCrit}}</textarea>
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-primary">Update</button>
-      </div>
-    </div>
-  </form>
-</div>
-<div class="container">
-  <form action="/bucket/{{bucket.bTitle}}?_method=delete" method="post">
-    <div class="form-group row">
-      <div class="offset-sm-2 col-sm-10">
-        <button type="submit" class="btn btn-danger">Remove</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>
