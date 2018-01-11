@@ -1,99 +1,127 @@
-<div class="container"> {{#if task}}
-    <h3 class="text-capitalize"> Task: {{task.tTitle}}</h3>
-    <h4>Description:</h4>
-    <h5 class="well well-sm">{{task.tDesc}}</h5>
-    <h4>Importance:</h4>
-    <h5 class="well well-sm">{{task.importance}}</h5>
-    <h4>Task Points:</h4>
-    <h5 class="well well-sm">{{task.points}}pts</h5>
-    <h4>Due Date:</h4>
-    <h5 class="well well-sm">{{task.dueDate}}</h5>
-    <h4>Task Status:</h4>
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{task.status}} aria-valuemin="0"
-            aria-valuemax="100" style="width:{{task.status}}%">
-            {{task.status}}%
+<div class="container">
+    {{#if task}}
+    <h3 class="text-capitalize"> Bucketed Task: {{bucket.bTitle}} - {{task.tTitle}}</h3>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Task Details</h4>
+        </div>
+        <div class="panel-body">
+            <h5>
+                <strong>Description: </strong>{{task.tDesc}}</h5>
+            <h5>
+                <strong>Importance: </strong>{{task.importance}}</h5>
+            <h5>
+                <strong>Task Points: </strong>{{task.points}}points</h5>
+            <h5>
+                <strong>Due Date: </strong>{{task.points}}points</h5>
+            <h5>
+                <strong>% Complete: </strong>
+            </h5>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{task.status}} aria-valuemin="0"
+                    aria-valuemax="100" style="width:{{task.status}}%">
+                    {{task.status}}%
+                </div>
+            </div>
         </div>
     </div>
     {{else}}
     <h3>That task couldn't be found!</h3>
     {{/if}}
-</div>
 
-{{!-- ****************************** --}}
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse4">Delete Task</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <strong>Warning: Removed task are completely deleted and not recoverable. </strong>
+                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=delete" method="post">
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h4>Update Task:</h4>
-<div class="container">
-    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
-        <div class="form-group row">
-            <label for="text-input" class="col-2 col-form-label">Title</label>
-            <div class="col-10">
-                <input class="form-control" type="text" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}" id="text-input">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse5">Update Task</a>
+                </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
+                        <div class="form-group">
+                            <label for="text-input" class="col-2 col-form-label">Title</label>
+                            <div class="col-10">
+                                <input class="form-control" type="text" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}" id="text-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
+                            <div class="col-10">
+                                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" value="{{task.tDesc}}" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="select-input" class="col-2 col-form-label">Task Importance</label>
+                            <div class="col-10"></div>
+                            <select class="form-control" type="text" name="bucket[addedTask][importance]" value="{{task.importance}}" id="select-input">
+                                <option>Choose...</option>
+                                <option>Very Low</option>
+                                <option>Low</option>
+                                <option>Moderate</option>
+                                <option>High</option>
+                                <option>Very High</option>
+                                <option>Critical</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="select-input" class="col-2 col-form-label">Task Points</label>
+                            <div class="col-10"></div>
+                            <select class="form-control" type="number" name="bucket[addedTask][points]" value="{{task.points}}" id="select-input">
+                                <option>Choose...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>5</option>
+                                <option>8</option>
+                                <option>13</option>
+                                <option>21</option>
+                                <option>34</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-input" class="col-2 col-form-label">Due Date</label>
+                            <div class="col-10">
+                                <input class="form-control" type="date" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}" id="date-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="number-input" class="col-2 col-form-label">% Complete</label>
+                            <div class="col-10">
+                                <input class="form-control" type="number" name="bucket[addedTask][status]" value="{{task.status}}" id="number-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label for="textarea-input" class="col-2 col-form-label">Task Description</label>
-            <div class="col-10">
-                <textarea class="form-control" name="bucket[addedTask][tDesc]" id="textarea-input" value="{{task.tDesc}}" rows="2"></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="select-input" class="col-2 col-form-label">Task Importance</label>
-            <div class="col-10"></div>
-            <select class="form-control" type="text" name="bucket[addedTask][importance]" value="{{task.importance}}" id="select-input">
-                <option>Choose...</option>
-                <option>Very Low</option>
-                <option>Low</option>
-                <option>Moderate</option>
-                <option>High</option>
-                <option>Very High</option>
-                <option>Critical</option>
-            </select>
-        </div>
-        <div class="form-group row">
-            <label for="select-input" class="col-2 col-form-label">Task Points</label>
-            <div class="col-10"></div>
-            <select class="form-control" type="number" name="bucket[addedTask][points]" value="{{task.points}}" id="select-input">
-                <option>Choose...</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>5</option>
-                <option>8</option>
-                <option>13</option>
-                <option>21</option>
-                <option>34</option>
-            </select>
-        </div>
-        <div class="form-group row">
-            <label for="date-input" class="col-2 col-form-label">Due Date</label>
-            <div class="col-10">
-                <input class="form-control" type="date" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}" id="date-input">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="number-input" class="col-2 col-form-label">% Complete</label>
-            <div class="col-10">
-                <input class="form-control" type="number" name="bucket[addedTask][status]" value="{{task.status}}" id="number-input">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-
-{{!-- ****************************** --}}
-<div class="container">
-    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=delete" method="post">
-        <div class="form-group row">
-            <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-danger">Remove</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
