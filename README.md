@@ -2,25 +2,38 @@
 
 **Developer:** Brian Reynolds
 
-**Description**
+**Description** Simple kanban tool; MVP of tool (currently implemented is a work organizer; ability to move tasks between buckets TBDed)
 
 **General Assembly WDI 20 Project 2 -- can-do-kanban**, a simple kanban application
-
-**Brief Example**
-
-...
 
 **Features include:**
 
 * User Authentication
 * CRUD buckets
 * CRUD tasks
-* CRUD task activities
-* Organize tasks and activities within buckets
+* Organize tasks within buckets
 
 **List of Entities Managed**
 
-...
+Two models:
+
+const TaskSchema = new mongoose.Schema({
+tTitle: String,
+tDesc: String,
+importance: String,
+points: Number,
+dueDate: String,
+status: Number
+});
+
+const BucketSchema = new mongoose.Schema({
+bOrder: Number,
+bTitle: String,
+bDesc: String,
+intCrit: String,
+exCrit: String,
+addedTask: [TaskSchema]
+});
 
 **List of Technologies Used**
 
@@ -28,8 +41,8 @@ Node, Express, Mongo, Mongoose, Handlebars, Bootstrap, CSS
 
 **Installation Instructions / Getting Started**
 
-No setup required. To use, navigate to application [here](https://xxx/)
+No setup required. To use, navigate to application [here](https://can-do-kanban.herokuapp.com/)
 
 **Contribution Guidelines**
 
-Contributions welcome. Project can be found in the this [repo](https://xxx)
+Contributions welcome. Project can be found in the this [repo](https://github.com/brikrey67/can-do-kanban)
