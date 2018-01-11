@@ -2,7 +2,7 @@
 
 **Developer:** Brian Reynolds
 
-**Description** Simple kanban tool; MVP of tool (currently implemented is a work organizer; ability to move tasks between buckets TBDed)
+**Description** Simple kanban tool; MVP is application that organizes tasks within buckets
 
 **General Assembly WDI 20 Project 2 -- can-do-kanban**, a simple kanban application
 
