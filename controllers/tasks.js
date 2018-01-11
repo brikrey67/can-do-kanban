@@ -40,19 +40,16 @@ function taskDelete(request, response) {
 
 function taskOnePatch(request, response) {
   let tId = request.params._id;
+  console.log("TID: " + tId);
   let bucketTitle = request.params.bTitle;
-  console.log(
-    "tId: " + tId,
-    "bucketTitle: " + bucketTitle,
-    "_id: " + request.params._id
-  );
+  console.log("BTITLE: " + bucketTitle);
   Bucket.findOneAndUpdate(
     { "addedTask._id": request.params._id },
-    { $set: { addedTask: { tOrder: request.body.tOrder } } },
+    { $push: { addedTask: request.body.bucket.addedTask } },
     { new: true }
   )
     .then(bucket => {
-      response.redirect(`/bucket/${bbucketTitle}/${iId}`);
+      response.redirect(`/bucket/${bucket.bTitle}`);
     })
     .catch(err => {
       console.log(err);
