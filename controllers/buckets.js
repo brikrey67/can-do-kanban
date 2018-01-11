@@ -6,6 +6,7 @@ const { Bucket } = require("../models/schema");
 
 function bucketGetAll(request, response) {
   Bucket.find({})
+    .sort("bOrder")
     .then(bucketData => {
       response.render("bucket-index", {
         bucket: bucketData
