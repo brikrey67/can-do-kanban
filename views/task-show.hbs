@@ -28,22 +28,30 @@
     </div>
     {{else}}
     <h3>That task couldn't be found!</h3>
-    {{/if}}
-
+    {{/if}} {{!-- @@@@@@@@ --}}
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse4">Delete Task</a>
+                    <a data-toggle="collapse" href="#collapse6">Move Task</a>
                 </h4>
             </div>
-            <div id="collapse4" class="panel-collapse collapse">
+            <div id="collapse6" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <strong>Warning: Removed task are completely deleted and not recoverable. </strong>
-                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=delete" method="post">
-                        <div class="form-group row">
+                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
+                        <div class="form-group">
+                            <label for="select-input" class="col-2 col-form-label">Move to Bucket:</label>
+                            <div class="col-10"></div>
+                            <select class="form-control" type="number" name="bucket" id="select-input">
+                                <option>Backlog</option>
+                                <option>To-Do</option>
+                                <option>In-Progress</option>
+                                <option>Complete</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <div class="offset-sm-2 col-sm-10">
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <button type="submit" class="btn btn-primary">Move</button>
                             </div>
                         </div>
                     </form>
@@ -51,6 +59,8 @@
             </div>
         </div>
     </div>
+
+    {{!-- @@@@@@@@ --}}
 
     <div class="panel-group">
         <div class="panel panel-primary">
@@ -115,6 +125,28 @@
                         <div class="form-group">
                             <div class="offset-sm-2 col-sm-10">
                                 <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse4">Delete Task</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <strong>Warning: Removed task are completely deleted and not recoverable. </strong>
+                    <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=delete" method="post">
+                        <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">Remove</button>
                             </div>
                         </div>
                     </form>
