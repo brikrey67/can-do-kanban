@@ -99,5 +99,6 @@ function taskOnePut(request, response) {
 module.exports = {
   taskGetOne: taskGetOne,
   taskDelete: taskDelete,
-  taskOnePut: taskOnePut
+  taskOnePut: taskOnePut,
+  taskMove: taskMove
 };
