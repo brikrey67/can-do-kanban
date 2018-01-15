@@ -10,7 +10,7 @@ function taskGetOne(request, response) {
   let bTitle = request.params.bTitle;
   //   console.log("TASK ID: " + tId, "BUCKET TITLE: " + bTitle);
 
-  Bucket.find({})
+  Bucket.find({ bTitle: { $ne: bTitle } })
     .then(bucketList => {
       Bucket.findOne({ bTitle: bTitle })
         .then(bucketData => {
@@ -44,6 +44,35 @@ function taskDelete(request, response) {
     .catch(err => {
       console.log(err);
     });
+}
+
+function taskMove(request, response) {
+  let bId = request.body.bucketList._id;
+  let tId = request.params._id;
+  let oldBucketTitle = request.params.bTitle;
+  console.log("TID: " + tId);
+  console.log("BID: " + bId);
+  console.log("OLD_BUCKETTITLE " + oldBucketTitle);
+  // if (bId === request.body.bucket._id) {
+  //   return;
+  // }
+  Bucket.findOneAndUpdate(
+    { _id: bId },
+    { $push: { addedTask: request.body.bucket.addedTask } },
+    { new: true }
+  ).then(removeTask => {
+    Bucket.findOneAndUpdate(
+      { "addedTask._id": tId },
+      { $pull: { addedTask: { _id: tId } } },
+      { new: true }
+    )
+      .then(bucket => {
+        response.redirect(`/bucket/${oldBucketTitle}`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 }
 
 // function taskOnePut(request, response) {

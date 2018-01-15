@@ -41,12 +41,28 @@
                 <div class="panel-body">
                     <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
 
+                        <input type="text" name="bucket[_id]" value="{{bucket._id}}">
+
+                        <input type="text" name="bucket[addedTask][_id]" value="{{task._id}}">
+
+                        <input type="text" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}">
+
+                        <input type="text" name="bucket[addedTask][tDesc]" value="{{task.tDesc}}">
+
+                        <input type="text" name="bucket[addedTask][importance]" value="{{task.importance}}">
+
+                        <input type="text" name="bucket[addedTask][points]" value="{{task.points}}">
+
+                        <input type="text" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}">
+
+                        <input type="text" name="bucket[addedTask][status]" value="{{task.status}}">
+
                         <div class="form-group">
                             <label for="select-input" class="col-2 col-form-label">Move to Bucket:</label>
                             <div class="col-10"></div>
-                            <select required class="form-control" type="text" name="[bucketList][bTitle]" id="select-input">
+                            <select required class="form-control" type="text" name="bucketList[_id]" id="select-input">
                                 {{#each bucketList as |bucketList. index|}}
-                                <option value="{{bucketList.bTitle}}">{{bucketList.bTitle}}</option>
+                                <option value="{{bucketList._id}}">{{bucketList.bTitle}}</option>
                                 {{/each}}
                             </select>
                         </div>
