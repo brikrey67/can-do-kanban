@@ -11,6 +11,7 @@ function taskGetOne(request, response) {
   //   console.log("TASK ID: " + tId, "BUCKET TITLE: " + bTitle);
 
   Bucket.find({ bTitle: { $ne: bTitle } })
+    .sort("bOrder")
     .then(bucketList => {
       Bucket.findOne({ bTitle: bTitle })
         .then(bucketData => {
