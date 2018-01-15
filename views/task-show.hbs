@@ -41,21 +41,21 @@
                 <div class="panel-body">
                     <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
 
-                        <input type="text" name="bucket[_id]" value="{{bucket._id}}">
+                        <input type="hidden" name="bucket[_id]" value="{{bucket._id}}">
 
-                        <input type="text" name="bucket[addedTask][_id]" value="{{task._id}}">
+                        <input type="hidden" name="bucket[addedTask][_id]" value="{{task._id}}">
 
-                        <input type="text" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}">
+                        <input type="hidden" name="bucket[addedTask][tTitle]" value="{{task.tTitle}}">
 
-                        <input type="text" name="bucket[addedTask][tDesc]" value="{{task.tDesc}}">
+                        <input type="hidden" name="bucket[addedTask][tDesc]" value="{{task.tDesc}}">
 
-                        <input type="text" name="bucket[addedTask][importance]" value="{{task.importance}}">
+                        <input type="hidden" name="bucket[addedTask][importance]" value="{{task.importance}}">
 
-                        <input type="text" name="bucket[addedTask][points]" value="{{task.points}}">
+                        <input type="hidden" name="bucket[addedTask][points]" value="{{task.points}}">
 
-                        <input type="text" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}">
+                        <input type="hidden" name="bucket[addedTask][dueDate]" value="{{task.dueDate}}">
 
-                        <input type="text" name="bucket[addedTask][status]" value="{{task.status}}">
+                        <input type="hidden" name="bucket[addedTask][status]" value="{{task.status}}">
 
                         <div class="form-group">
                             <label for="select-input" class="col-2 col-form-label">Move to Bucket:</label>

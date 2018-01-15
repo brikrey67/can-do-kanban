@@ -51,7 +51,8 @@ function taskMove(request, response) {
   let tId = request.params._id;
   let oldBucketTitle = request.params.bTitle;
   console.log("TID: " + tId);
-  console.log("BID: " + bId);
+  console.log("NEWBID: " + bId);
+  console.log("OLDBID: " + request.body.bucket._id);
   console.log("OLD_BUCKETTITLE " + oldBucketTitle);
   // if (bId === request.body.bucket._id) {
   //   return;
