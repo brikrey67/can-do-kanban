@@ -9,18 +9,26 @@ function taskGetOne(request, response) {
   let tId = request.params._id;
   let bTitle = request.params.bTitle;
   //   console.log("TASK ID: " + tId, "BUCKET TITLE: " + bTitle);
-  Bucket.findOne({ bTitle: bTitle })
-    .then(bucketData => {
-      //   console.log("BUCKET DATA: " + bucketData);
-      //   console.log("ADDED TASK DATA: " + bucketData.addedTask);
-      //   taskData = bucketData.addedTask;
-      //   console.log("TASKDATA: " + taskData);
-      taskData = bucketData.addedTask.find(task => task._id.toString() == tId);
-      //   console.log("TASK DATA: " + taskData);
-      response.render("task-show", { task: taskData, bucket: bucketData });
+
+  Bucket.find({})
+    .then(bucketList => {
+      Bucket.findOne({ bTitle: bTitle })
+        .then(bucketData => {
+          taskData = bucketData.addedTask.find(
+            task => task._id.toString() == tId
+          );
+          response.render("task-show", {
+            task: taskData,
+            bucket: bucketData,
+            bucketList: bucketList
+          });
+        })
+        .catch(err => {
+          console.log("BUCKETDATAERR: " + err);
+        });
     })
     .catch(err => {
-      console.log(err);
+      console.log("BUCKETLISTERR: " + err);
     });
 }
 
@@ -64,9 +72,9 @@ function taskDelete(request, response) {
 
 function taskOnePut(request, response) {
   bucketTitle = request.params.bTitle;
-  console.log("BTITLE: " + bucketTitle);
+  // console.log("BTITLE: " + bucketTitle);
   tId = request.params._id;
-  console.log("TID: " + tId);
+  // console.log("TID: " + tId);
   Bucket.findOne(
     {
       bTitle: bucketTitle
@@ -74,8 +82,8 @@ function taskOnePut(request, response) {
     function(err, doc) {
       var subDoc = doc.addedTask.id(request.params._id);
       subDoc.set(request.body.bucket.addedTask);
-      console.log("DOC: " + doc);
-      console.log("SUBDOC: " + subDoc);
+      // console.log("DOC: " + doc);
+      // console.log("SUBDOC: " + subDoc);
       doc
         .save()
         .then(doc => {

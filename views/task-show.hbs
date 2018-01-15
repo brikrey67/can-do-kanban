@@ -40,23 +40,15 @@
             <div id="collapse6" class="panel-collapse collapse">
                 <div class="panel-body">
                     <form action="/bucket/{{bucket.bTitle}}/{{task._id}}?_method=patch" method="post">
-                        {{!--
+
                         <div class="form-group">
                             <label for="select-input" class="col-2 col-form-label">Move to Bucket:</label>
                             <div class="col-10"></div>
-                            <select class="form-control" type="number" name="selectedBucket" id="select-input">
-                                <option>Backlog</option>
-                                <option>To-Do</option>
-                                <option>In-Progress</option>
-                                <option>Complete</option>
+                            <select required class="form-control" type="text" name="[bucketList][bTitle]" id="select-input">
+                                {{#each bucketList as |bucketList. index|}}
+                                <option value="{{bucketList.bTitle}}">{{bucketList.bTitle}}</option>
+                                {{/each}}
                             </select>
-                        </div> --}}
-
-                        <div class="form-group">
-                            <label for="text-input" class="col-2 col-form-label">Move to Bucket:</label>
-                            <div class="col-10">
-                                <input class="form-control" type="text" name="selectedBucket" placeholder="Bucket Title" id="text-input">
-                            </div>
                         </div>
 
                         <div class="form-group">
