@@ -2,7 +2,7 @@
 
 **Developer:** Brian Reynolds
 
-**Description** Simple kanban tool; MVP is application that organizes tasks within buckets
+**Description** Simple kanban tool that allows user to CRUD buckets and metadata, CRUD tasks and metadata, and move tasks betwen buckets.
 
 **General Assembly WDI 20 Project 2 -- can-do-kanban**, a simple kanban application
 
@@ -37,7 +37,7 @@ addedTask: [TaskSchema]
 
 **List of Technologies Used**
 
-Node, Express, Mongo, Mongoose, Handlebars, Bootstrap, CSS
+Node, Express, Mongo, Mongoose, Handlebars, Bootstrap, CSS, HTML
 
 **Installation Instructions / Getting Started**
 
