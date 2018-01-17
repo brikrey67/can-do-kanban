@@ -82,11 +82,12 @@ function taskPatch(request, response) {
     });
 }
 
+// In ES6, when the keys of an object literal is the same as its valus, you don't need to write them twice
 module.exports = {
-  bucketGetAll: bucketGetAll,
-  bucketGetOne: bucketGetOne,
-  bucketPost: bucketPost,
-  bucketDelete: bucketDelete,
-  bucketPut: bucketPut,
-  taskPatch: taskPatch
+  bucketGetAll,
+  bucketGetOne,
+  bucketPost,
+  bucketDelete,
+  bucketPut,
+  taskPatch
 };

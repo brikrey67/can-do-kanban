@@ -1,3 +1,5 @@
+// This file currently doesn't contribute to the app
+
 const mongoose = require("../db/connection");
 
 const TaskSchema = new mongoose.Schema({
