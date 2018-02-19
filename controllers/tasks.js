@@ -49,11 +49,12 @@ function taskDelete(request, response) {
 
 function taskMove(request, response) {
   let bId = request.body.bucketList._id;
+  let oBId = request.body.bucket._id;
   let tId = request.params._id;
   let oldBucketTitle = request.params.bTitle;
   console.log("TID: " + tId);
   console.log("NEWBID: " + bId);
-  console.log("OLDBID: " + request.body.bucket._id);
+  console.log("OLDBID: " + oBId);
   console.log("OLD_BUCKETTITLE " + oldBucketTitle);
   // if (bId === request.body.bucket._id) {
   //   return;
@@ -64,7 +65,7 @@ function taskMove(request, response) {
     { new: true }
   ).then(removeTask => {
     Bucket.findOneAndUpdate(
-      { "addedTask._id": tId },
+      { _id: oBId },
       { $pull: { addedTask: { _id: tId } } },
       { new: true }
     )
