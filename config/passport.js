@@ -21,7 +21,7 @@ module.exports = function(passport) {
         User.findOne({ 'local.email' :  email }, function(err, user) {
             // Find a user with this e-mail
             if (err) return callback(err);
-      
+
             // If there already is a user with this email
             if (user) {
           return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
@@ -31,7 +31,7 @@ module.exports = function(passport) {
           var newUser            = new User();
           newUser.local.email    = email;
           newUser.local.password = newUser.encrypt(password);
-      
+
           newUser.save(function(err) {
             if (err) throw err;
             return callback(null, newUser);
@@ -49,7 +49,7 @@ module.exports = function(passport) {
             if (err) {
                 return callback(err)
             }
-    
+
             // If no user is found
             if (!user) {
                 return callback(null, false, req.flash('loginMessage', 'No user found.'))

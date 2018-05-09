@@ -52,6 +52,7 @@ function taskMove(request, response) {
   let oBId = request.body.bucket._id;
   let tId = request.params._id;
   let oldBucketTitle = request.params.bTitle;
+  // Console logs are for debugging. You shouldn't leave them in a production app
   console.log("TID: " + tId);
   console.log("NEWBID: " + bId);
   console.log("OLDBID: " + oBId);
@@ -63,7 +64,8 @@ function taskMove(request, response) {
     { _id: bId },
     { $push: { addedTask: request.body.bucket.addedTask } },
     { new: true }
-  ).then(removeTask => {
+    // I removed 'removeTask' from here, because findOneAndUpdate will return the bucket which was updated
+  ).then(() => {
     Bucket.findOneAndUpdate(
       { _id: oBId },
       { $pull: { addedTask: { _id: tId } } },
@@ -78,6 +80,7 @@ function taskMove(request, response) {
   });
 }
 
+// Try not leave dead code in your app
 // function taskOnePut(request, response) {
 //   let tId = request.params._id;
 //   console.log("TID: " + tId);
